@@ -1,0 +1,28 @@
+POST http://localhost:3333/transactions 
+Content-Type: application/json
+
+
+{
+  "description": "descrição transação",
+  "money": 1000,
+  "date": "20022003"
+}
+###
+
+GET  http://localhost:3333/transactions
+###
+
+
+PUT  http://localhost:3333/transactions/a84bd95f-2361-48bd-8e40-d7a7d0bdcdba 
+Content-Type: application/json
+
+
+{
+  "description": "danilo",
+  "money": 1000,
+  "date": "20022003"
+}
+
+###
+
+DELETE   http://localhost:3333/a84bd95f-2361-48bd-8e40-d7a7d0bdcdba
