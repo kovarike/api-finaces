@@ -1,5 +1,6 @@
 import fastify from "fastify";
 import { DatabasePG } from "./db.js";
+import cors from 'cors';
 
 export const Routes = fastify();
 Routes.use(cors())
