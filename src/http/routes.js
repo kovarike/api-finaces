@@ -3,16 +3,16 @@ import { DatabasePG } from "./db.js";
 import cors from 'cors';
 
 export const Routes = fastify();
-Routes.use(cors())
+Routes.register(cors())
 const db = new DatabasePG();
 
-Routes.get('/transactions', async (request, reply) =>{
+Routes.get('/transactions', cors(), async (request, reply) =>{
   const search = request.query.search;
   const listTransaction = await db.list(search);
   return listTransaction
 });
 
-Routes.post('/transactions', async (request, reply) =>{
+Routes.post('/transactions', cors(), async (request, reply) =>{
   const {description, money, date} =  request.body;
 
   await db.create({
@@ -24,7 +24,7 @@ Routes.post('/transactions', async (request, reply) =>{
   return reply.status(201).send();
 });
 
-Routes.put('/transactions/:id', async (request, reply) => {
+Routes.put('/transactions/:id', cors(), async (request, reply) => {
   const transactionID = request.params.id;
   const {description, money, date} = request.body;
 
@@ -37,7 +37,7 @@ Routes.put('/transactions/:id', async (request, reply) => {
   return reply.status(204.).send()
 });
 
-Routes.delete('/transactions/:id', async (request, reply) => {
+Routes.delete('/transactions/:id', cors(), async (request, reply) => {
   const transactionID = request.params.id;
   await db.delete(transactionID)
   return reply.status(204).send()
