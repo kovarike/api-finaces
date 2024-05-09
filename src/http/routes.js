@@ -1,9 +1,12 @@
 import fastify from "fastify";
 import { DatabasePG } from "./db.js";
-import cors from 'cors';
+import cors from '@fastify/cors';
 
 export const Routes = fastify();
-await Routes.register(cors())
+Routes.register(cors, {
+  origin: true,
+  
+})
 const db = new DatabasePG();
 
 Routes.get('/transactions', async (request, reply) =>{
